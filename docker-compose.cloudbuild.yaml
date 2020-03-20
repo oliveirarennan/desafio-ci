@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  or-go:
+    build: .
+    volumes:
+      - ./src/app:/go/src/app  
+      

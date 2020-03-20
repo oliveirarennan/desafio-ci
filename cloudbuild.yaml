@@ -1,0 +1,23 @@
+steps:
+    - id: "Teste unitario"
+      name: 'gcr.io/cloud-builders/go'
+      args: ['test', './src/app']
+      env:
+        - 'GOPATH=/go/src/app'
+    - id: "Gerando Imagem com Docker"     
+      name: 'gcr.io/cloud-builders/docker'
+      args: ['build', '-t', 'gcr.io/$PROJECT_ID/or-go:latest', '.']
+
+    # - id: "Rodando docker-compose"
+    #   name: 'gcr.io/$PROJECT_ID/docker-compose:1.24.0'
+    #   args: ['-f', 'docker-compose.cloudbuild.yaml', 'up', '-d']
+    #   env:
+    #     - 'GOPATH=/go/src/app'
+       
+    # - id: "Rodando APP"
+    #   name: 'gcr.io/$PROJECT_ID/or-go'
+    #   args: ['go','run','./src/app']
+    #   env:
+    #     - 'GOPATH=/go/src/app'    
+
+images: ['gcr.io/$PROJECT_ID/or-go']
